@@ -19,6 +19,8 @@ using Windows.Foundation.Metadata;
 using System.Collections;
 using System.Collections.Generic;
 
+using Windows.Storage.Streams;
+
 namespace BluetoothLEExplorer.Models
 {
     /// <summary>
@@ -436,6 +438,45 @@ namespace BluetoothLEExplorer.Models
             }
         }
 
+        //@add by tony
+        private string bluetoothManufacturerAsString;
+
+        public string BluetoothManufacturerAsString
+        {
+            get
+            {
+                return bluetoothManufacturerAsString;
+            }
+
+            private set
+            {
+                if(bluetoothManufacturerAsString != value)
+                {
+                    bluetoothManufacturerAsString = value;
+                    OnPropertyChanged(new PropertyChangedEventArgs("BluetoothManufacturerAsString"));
+                }
+            }
+        }
+
+        private String bluetoothManufactureDataAsString;
+
+        public String BluetoothManufactureDataAsString
+        {
+            get
+            {
+                return bluetoothManufactureDataAsString;
+            }
+
+            set
+            {
+                if (bluetoothManufactureDataAsString != value)
+                {
+                    bluetoothManufactureDataAsString = value;
+                    OnPropertyChanged(new PropertyChangedEventArgs("BluetoothManufactureDataAsString"));
+                }
+            }
+        }
+
         /// <summary>
         /// Initializes a new instance of the<see cref="ObservableBluetoothLEDevice" /> class.
         /// </summary>
@@ -451,6 +492,7 @@ namespace BluetoothLEExplorer.Models
             {
                 BluetoothAddressAsString = ret = DeviceInfo.Properties["System.Devices.Aep.DeviceAddress"].ToString();
                 BluetoothAddressAsUlong = Convert.ToUInt64(BluetoothAddressAsString.Replace(":", String.Empty), 16);
+                //BluetoothManufacturerAsString = ret = DeviceInfo.Properties["System.Devices.Aep.Manufacturer"].ToString();
             }
 
             IsPaired = DeviceInfo.Pairing.IsPaired;

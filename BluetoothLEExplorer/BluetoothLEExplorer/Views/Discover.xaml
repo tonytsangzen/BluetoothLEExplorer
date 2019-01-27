@@ -154,10 +154,10 @@
                 </StackPanel>
                 <CheckBox Content="Continuous Enumeration" IsChecked="{x:Bind ViewModel.ContinuousEnumeration, Mode=TwoWay}" />
                 
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,5">
+                <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,5">
                     <TextBlock Text="Filter: " VerticalAlignment="Center" Margin="0, 0, 5, 0"/>
                     <TextBox Text="{Binding GridFilter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  />
-                </StackPanel>
+                </StackPanel>-->
                             
                 <TextBlock>
                     <Run Text="Total Device Count:" />
@@ -217,13 +217,16 @@
                                 <TextBlock TextWrapping="Wrap">
                                     Name: <Run Text="{x:Bind Name, Mode=OneWay}" />
                                 </TextBlock>
+                                <TextBlock TextWrapping="Wrap">
+                                    Count: <Run Text="{x:Bind BluetoothManufactureDataAsString, Mode=OneWay}" />
+                                </TextBlock>
                                 <TextBlock TextWrapping="WrapWholeWords" Foreground="Black">
-                                    BT Address: <Run Text="{x:Bind BluetoothAddressAsString, Mode=OneTime}" />
+                                    Mac: <Run Text="{x:Bind BluetoothAddressAsString, Mode=OneTime}" />
                                 </TextBlock>
                                 <TextBlock Foreground="Black">
                                     Connected: <Run Text="{x:Bind IsConnected, Mode=OneWay}"/>
                                 </TextBlock>
-                                <TextBlock insider:Visibility="Visible" release:Visibility="Collapsed" Foreground="Black">
+                                <!--<TextBlock insider:Visibility="Visible" release:Visibility="Collapsed" Foreground="Black">
                                     Last Seen: <Run Text="{x:Bind LastSeenTime, Mode=OneWay}"/>
                                 </TextBlock>
                                 <TextBlock Foreground="Black">
@@ -234,7 +237,7 @@
                                 </TextBlock>
                                 <TextBlock>
                                     RSSI: <Run Text="{x:Bind RSSI, Mode=OneWay}"/>
-                                </TextBlock>
+                                </TextBlock>-->
                             </StackPanel>
                             <StackPanel Grid.Row="2" Grid.ColumnSpan="2">
                                 <Button Name="Pair" Click="{x:Bind DoInAppPairing}" HorizontalAlignment="Center">

@@ -125,7 +125,7 @@ namespace BluetoothLEExplorer.ViewModels
             }
         }
 
-        private bool continuousEnumeration = false;
+        private bool continuousEnumeration = true;
         public bool ContinuousEnumeration
         {
             get
@@ -190,6 +190,7 @@ namespace BluetoothLEExplorer.ViewModels
 
             Context = GattSampleContext.Context;
             Context.PropertyChanged += Context_PropertyChanged;
+            Context.StartEnumeration();
         }
 
         /// <summary>
@@ -336,7 +337,7 @@ namespace BluetoothLEExplorer.ViewModels
             }
 
             Context.BluetoothLEDevices.CollectionChanged += BluetoothLEDevices_CollectionChanged;
-            GridFilter = "";
+            GridFilter = "gSensor";
             UpdateDeviceList();
 
             await Task.CompletedTask;

@@ -439,6 +439,7 @@ namespace BluetoothLEExplorer.Models
                     "System.Devices.Aep.IsConnected",
                     "System.Devices.Aep.IsPaired",
                     "System.Devices.Aep.IsPresent",
+                    //"System.Devices.Aep.Manufacturer",
                     "System.Devices.Aep.ProtocolId",
                     "System.Devices.Aep.Bluetooth.Le.IsConnectable",
                     "System.Devices.Aep.SignalStrength",
@@ -463,6 +464,7 @@ namespace BluetoothLEExplorer.Models
                     "System.Devices.Aep.IsConnected",
                     "System.Devices.Aep.IsPaired",
                     "System.Devices.Aep.IsPresent",
+                    //"System.Devices.Aep.Manufacturer",
                     "System.Devices.Aep.ProtocolId",
                     "System.Devices.Aep.Bluetooth.Le.IsConnectable",
                     "System.Devices.Aep.SignalStrength",
@@ -541,7 +543,11 @@ namespace BluetoothLEExplorer.Models
                             () =>
                             {
                                 d.ServiceCount = args.Advertisement.ServiceUuids.Count();
-                            });
+                                if (args.Advertisement.ManufacturerData.Count >= 1) {
+                                    var dataReader = Windows.Storage.Streams.DataReader.FromBuffer(args.Advertisement.ManufacturerData.ElementAt(0).Data);
+                                    d.BluetoothManufactureDataAsString = dataReader.ReadInt32().ToString();
+                                }
+                            }); 
                     }
                 }
             }
@@ -605,7 +611,7 @@ namespace BluetoothLEExplorer.Models
                                 async () =>
                                 {
                                     dev.Update(deviceInfoUpdate);
-                                    await UpdateBatteryLevel(dev);
+                                    //await UpdateBatteryLevel(dev);
                                 });
                         }
                         else
